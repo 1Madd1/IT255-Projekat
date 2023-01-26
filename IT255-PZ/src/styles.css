@@ -1,1 +1,20 @@
-/* You can add global styles to this file, and also import other style files */
+body {
+    -webkit-background-size: cover;
+    -moz-background-size: cover;
+    -o-background-size: cover;
+    background-size: cover;
+    display: flex;
+    min-height: 100vh;
+    flex-direction: column;
+}
+
+footer {
+    color: white;
+    position: sticky;
+    left: 0;
+    bottom: 0;
+    width: 100%;
+    text-align: center;
+    background-color: #3e4449;
+    flex: 1;
+}

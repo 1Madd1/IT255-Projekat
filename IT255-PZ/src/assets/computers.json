@@ -1,0 +1,44 @@
+[
+    {
+        "id": "1",
+        "name": "ASUS Gaming Computer",
+        "image": "https://viphouse.rs/products/146378/146378_1625415100.jpg",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit tincidunt tortor et scelerisque. Proin dolor sem, porta cursus elit molestie, scelerisque venenatis augue. Donec dignissim malesuada venenatis. Phasellus mauris nunc, tristique at tincidunt vel, porttitor at nisl. Aenean ullamcorper sapien nulla, nec elementum massa semper vitae.",
+        "price": 1199.99
+    },
+    {
+        "id": "2",
+        "name": "Huawei Laptop",
+        "image": "https://www.tehnomedia.rs/products/69072_huge_0_cached.jpg",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit tincidunt tortor et scelerisque. Proin dolor sem, porta cursus elit molestie, scelerisque venenatis augue. Donec dignissim malesuada venenatis. Phasellus mauris nunc, tristique at tincidunt vel, porttitor at nisl. Aenean ullamcorper sapien nulla, nec elementum massa semper vitae.",
+        "price": 899.99
+    },
+    {
+        "id": "3",
+        "name": "Huawei PC",
+        "image": "https://consumer.huawei.com/content/dam/huawei-cbg-site/common/mkt/pdp/desktops/matestation-x-en/imgs/ksp/huawei-matestation-x-kv-xs.jpg",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit tincidunt tortor et scelerisque. Proin dolor sem, porta cursus elit molestie, scelerisque venenatis augue. Donec dignissim malesuada venenatis. Phasellus mauris nunc, tristique at tincidunt vel, porttitor at nisl. Aenean ullamcorper sapien nulla, nec elementum massa semper vitae.",
+        "price": 499.99
+    },
+    {
+        "id": "4",
+        "name": "GIGABYTE Gaming Laptop",
+        "image": "https://img.overclockers.co.uk/media/image/aero16.jpg",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit tincidunt tortor et scelerisque. Proin dolor sem, porta cursus elit molestie, scelerisque venenatis augue. Donec dignissim malesuada venenatis. Phasellus mauris nunc, tristique at tincidunt vel, porttitor at nisl. Aenean ullamcorper sapien nulla, nec elementum massa semper vitae.",
+        "price": 599.99
+    },
+    {
+        "id": "5",
+        "name": "HP Pavilion 15 Gaming Laptop",
+        "image": "https://img.gigatron.rs/img/products/large/image5dc59a2808abd.png",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit tincidunt tortor et scelerisque. Proin dolor sem, porta cursus elit molestie, scelerisque venenatis augue. Donec dignissim malesuada venenatis. Phasellus mauris nunc, tristique at tincidunt vel, porttitor at nisl. Aenean ullamcorper sapien nulla, nec elementum massa semper vitae.",
+        "price": 1099.99
+    },
+    {
+        "id": "6",
+        "name": "Desktop PC",
+        "image": "https://m.media-amazon.com/images/I/718sn7oOcfL.jpg",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit tincidunt tortor et scelerisque. Proin dolor sem, porta cursus elit molestie, scelerisque venenatis augue. Donec dignissim malesuada venenatis. Phasellus mauris nunc, tristique at tincidunt vel, porttitor at nisl. Aenean ullamcorper sapien nulla, nec elementum massa semper vitae.",
+        "price": 159.99
+    }
+]

@@ -1,0 +1,56 @@
+[
+    {
+        "id": "1",
+        "name": "Radeon RX 550 4GB",
+        "image": "https://www.ctshop.rs/img/products/2017-09-22/91a78V2nepL._SL1500__27_4.jpg",
+        "manufacturer": "Asus",
+        "quantity": 4,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit tincidunt tortor et scelerisque. Proin dolor sem, porta cursus elit molestie, scelerisque venenatis augue. Donec dignissim malesuada venenatis. Phasellus mauris nunc, tristique at tincidunt vel, porttitor at nisl. Aenean ullamcorper sapien nulla, nec elementum massa semper vitae.",
+        "price": 149.99
+    },
+    {
+        "id": "2",
+        "name": "ROG Strix Z490-H Gaming motherboard",
+        "image": "https://img.gigatron.rs/img/products/large/image631f1d4a21767.png",
+        "manufacturer": "Asus",
+        "quantity": 20,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit tincidunt tortor et scelerisque. Proin dolor sem, porta cursus elit molestie, scelerisque venenatis augue. Donec dignissim malesuada venenatis. Phasellus mauris nunc, tristique at tincidunt vel, porttitor at nisl. Aenean ullamcorper sapien nulla, nec elementum massa semper vitae.",
+        "price": 159.99
+    },
+    {
+        "id": "3",
+        "name": "INTEL Core i7-10700K 3.8GHz (5.10GHz)",
+        "manufacturer": "Intel",
+        "quantity": 10,
+        "image": "https://img.gigatron.rs/img/products/large/image631f1d4a21767.png",
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit tincidunt tortor et scelerisque. Proin dolor sem, porta cursus elit molestie, scelerisque venenatis augue. Donec dignissim malesuada venenatis. Phasellus mauris nunc, tristique at tincidunt vel, porttitor at nisl. Aenean ullamcorper sapien nulla, nec elementum massa semper vitae.",
+        "price": 409.99
+    },
+    {
+        "id": "4",
+        "name": "Gigabyte GeForce RTX 3060 Ti",
+        "image": "https://www.ctshop.rs/product/img/graficke-kartice/gigabyte-geforce-rtx-3060-ti-windforce-oc-8ggv-n306twf2oc-8gdgrafika-kartica-8gb-gddr6-256bit/normal/100734481_7586208337.jpg",
+        "manufacturer": "Gigabyte",
+        "quantity": 7,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit tincidunt tortor et scelerisque. Proin dolor sem, porta cursus elit molestie, scelerisque venenatis augue. Donec dignissim malesuada venenatis. Phasellus mauris nunc, tristique at tincidunt vel, porttitor at nisl. Aenean ullamcorper sapien nulla, nec elementum massa semper vitae.",
+        "price": 559.99
+    },
+    {
+        "id": "5",
+        "name": "COOLER MASTER HYPER 212 RGB",
+        "image": "https://www.tehnomedia.rs/products/72529_huge_0_cached.jpg",
+        "manufacturer": "Cooler Master",
+        "quantity": 40,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit tincidunt tortor et scelerisque. Proin dolor sem, porta cursus elit molestie, scelerisque venenatis augue. Donec dignissim malesuada venenatis. Phasellus mauris nunc, tristique at tincidunt vel, porttitor at nisl. Aenean ullamcorper sapien nulla, nec elementum massa semper vitae.",
+        "price": 59.99
+    },
+    {
+        "id": "6",
+        "name": "SAMSUNG SSD 970 EVO PLUS 1TB NVMe M2",
+        "image": "https://img.gigatron.rs/img/products/large/image5c6fdeafdb8ea.png",
+        "manufacturer": "Samsung",
+        "quantity": 14,
+        "description": "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque blandit tincidunt tortor et scelerisque. Proin dolor sem, porta cursus elit molestie, scelerisque venenatis augue. Donec dignissim malesuada venenatis. Phasellus mauris nunc, tristique at tincidunt vel, porttitor at nisl. Aenean ullamcorper sapien nulla, nec elementum massa semper vitae.",
+        "price": 159.99
+    }
+]
