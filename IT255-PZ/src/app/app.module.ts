@@ -10,6 +10,8 @@ import { ComponentsComponent } from './components/components.component';
 import { AboutUsComponent } from './about-us/about-us.component';
 import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
+import { FormsModule } from '@angular/forms';
+import { PaymentPageComponent } from './payment-page/payment-page.component';
 
 const routes: Routes = [
   // osnovne rute
@@ -18,6 +20,7 @@ const routes: Routes = [
   { path: 'computers', component: ComputersComponent },
   { path: 'components', component: ComponentsComponent },
   { path: 'cart', component: CartComponent },
+  { path: 'payment-page', component: PaymentPageComponent },
   { path: 'about-us', component: AboutUsComponent }]
 
 @NgModule({
@@ -28,13 +31,15 @@ const routes: Routes = [
     ComponentsComponent,
     AboutUsComponent,
     CartComponent,
-    HomeComponent
+    HomeComponent,
+    PaymentPageComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
-    RouterModule.forRoot(routes)
+    RouterModule.forRoot(routes),
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

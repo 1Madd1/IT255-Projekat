@@ -13,8 +13,17 @@ footer {
     position: sticky;
     left: 0;
     bottom: 0;
+    top: 1000px;
     width: 100%;
     text-align: center;
     background-color: #3e4449;
-    flex: 1;
+    flex: 0;
+}
+
+.description {
+    max-width: 50%;
+}
+
+.info {
+    max-width: 80%;
 }
