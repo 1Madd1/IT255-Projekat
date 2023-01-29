@@ -1,0 +1,28 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "username": "User",
+      "email": "user@gmail.com",
+      "password": "user",
+      "creditCard": {
+        "card-number": "1111-1111-1111-1111",
+        "card-date": "04/06",
+        "cvv2": "123",
+        "money-amount": 2000
+      }
+    },
+    {
+      "id": 2,
+      "username": "Admin",
+      "email": "admin@gmail.com",
+      "password": "admin",
+      "creditCard": {
+        "card-number": "1234-5678-9876-5432",
+        "card-date": "03/09",
+        "cvv2": "236",
+        "money-amount": 2000
+      }
+    }
+  ]
+}

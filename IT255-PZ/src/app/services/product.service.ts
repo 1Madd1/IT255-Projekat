@@ -11,11 +11,12 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getAllComputers() {
-    return this.http.get('assets/computers.json');
+    console.log(this.http.get('../assets/computers.json'));
+    return this.http.get('../assets/computers.json');
   }
 
   getAllComponents() {
-    return this.http.get('assets/components.json');
+    return this.http.get('../assets/components.json');
   }
 
   getProduct() {
@@ -49,7 +50,7 @@ export class ProductService {
   }
 
   clearProducts() {
-    localStorage.clear
+    localStorage.clear();
   }
 
 }

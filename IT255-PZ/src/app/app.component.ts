@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'Online PC Shop';
+
+  ngOnInit(): void {
+  }
+
+
 }
 

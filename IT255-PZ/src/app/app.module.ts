@@ -8,18 +8,21 @@ import { RouterModule, Routes } from '@angular/router';
 import { ComputersComponent } from './computers/computers.component';
 import { ComponentsComponent } from './components/components.component';
 import { AboutUsComponent } from './about-us/about-us.component';
-import { CartComponent } from './cart/cart.component';
 import { HomeComponent } from './home/home.component';
-import { FormsModule } from '@angular/forms';
 import { PaymentPageComponent } from './payment-page/payment-page.component';
+import { LoginRegistrationPageComponent } from './login-registration-page/login-registration-page.component';
+import { UserProfileComponent } from './user-profile/user-profile.component';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { FormGroup } from '@angular/forms';
 
 const routes: Routes = [
   // osnovne rute
-  { path: '', redirectTo: '/computers', pathMatch: 'full' },
+  { path: '', redirectTo: '/login-registraion-page', pathMatch: 'full' },
+  { path: 'login-registraion-page', component: LoginRegistrationPageComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'user-profile', component: UserProfileComponent },
   { path: 'computers', component: ComputersComponent },
   { path: 'components', component: ComponentsComponent },
-  { path: 'cart', component: CartComponent },
   { path: 'payment-page', component: PaymentPageComponent },
   { path: 'about-us', component: AboutUsComponent }]
 
@@ -30,16 +33,17 @@ const routes: Routes = [
     ComputersComponent,
     ComponentsComponent,
     AboutUsComponent,
-    CartComponent,
     HomeComponent,
-    PaymentPageComponent
+    PaymentPageComponent,
+    UserProfileComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
     RouterModule.forRoot(routes),
-    FormsModule
+    FormsModule,
+    ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

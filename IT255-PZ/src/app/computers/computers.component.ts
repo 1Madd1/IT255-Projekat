@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
-import { ProductService } from '../product.service';
+import { ProductService } from '../services/product.service';
 
 @Component({
   selector: 'app-computers',
@@ -55,8 +55,12 @@ export class ComputersComponent implements OnInit {
   }
 
   checkout() {
-    localStorage.setItem('cartTotal', JSON.stringify(this.total));
-    this.router.navigate(['/payment-page']);
+    if (this.products.length > 0) {
+      localStorage.setItem('cartTotal', JSON.stringify(this.total));
+      this.router.navigate(['/payment-page']);
+    } else {
+      alert("Please select a product for checkout!");
+    }
   }
 
 }

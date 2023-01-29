@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Login/Registration Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Jost:wght@500&display=swap" rel="stylesheet">
+</head>
+
+<body>
+    <div class="main">
+        <input type="checkbox" id="chk" aria-hidden="true">
+
+        <div class="signup">
+            <form onsubmit="return false" #myform class="login">
+                <label for="chk" aria-hidden="true">Sign up</label>
+                <input type="text" placeholder="User name" #username minlength="3" maxlength="30">
+                <input type="email" placeholder="Email" name="email" #email minlength="3" maxlength="30">
+                <input type="text" placeholder="Password" name="password" #password minlength="3" maxlength="30">
+                <input type="text" placeholder="Card number" name="cardNumber" #cardNumber>
+                <input type="text" placeholder="Card validation date" name="cardDate" #cardDate>
+                <input type="text" placeholder="CVV2" name="cvv2" #cvv2>
+
+                <input type="submit" class="btn btn-dark" value="Submit" (click)="signup(username, email, password, cardNumber, cardDate, cvv2)">
+            </form>
+        </div>
+
+        <div class="login">
+            <form onsubmit="return false" class="login">
+                <label for="chk" aria-hidden="true">Login</label>
+                <input type="email" placeholder="Email" name="email" #email2 minlength="3" maxlength="30">
+                <input type="text" placeholder="Password" name="password" minlength="3" maxlength="30" #password2>
+                <input type="submit" class="btn btn-dark" value="Submit" (click)="login(email2, password2)">
+            </form>
+        </div>
+    </div>
+</body>
+
+</html>
