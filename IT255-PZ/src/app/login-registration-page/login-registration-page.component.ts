@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
+import { User } from '../models/user';
 import { UserService } from '../services/user.service';
 
 @Component({
@@ -12,7 +13,7 @@ import { UserService } from '../services/user.service';
 export class LoginRegistrationPageComponent implements OnInit {
 
   angForm: FormGroup;
-  userList: any;
+  user: User;
   constructor(private fb: FormBuilder, private userService: UserService, private http: HttpClient, private router: Router) {
     this.createForm();
   }
@@ -20,7 +21,14 @@ export class LoginRegistrationPageComponent implements OnInit {
 
 
   ngOnInit(): void {
-
+    console.log(localStorage.getItem('loggedInUser'));
+    this.user = JSON.parse(localStorage.getItem('loggedInUser') as any) || [];
+    console.log(this.user);
+    console.log(Object.keys(this.user).length);
+    console.log(Object.keys(this.user).length == 0);
+    if(Object.keys(this.user).length != 0 && this.user != null){
+      this.router.navigate(['home']);
+    }
   }
 
   createForm() {
@@ -43,8 +51,6 @@ export class LoginRegistrationPageComponent implements OnInit {
   }
 
   registrationValidation(username: HTMLInputElement, email: HTMLInputElement, password: HTMLInputElement, cardNumber: HTMLInputElement, cardDate: HTMLInputElement, cvv2: HTMLInputElement) {
-    console.log("Im here 1");
-    console.log(/\s/.test(username.value));
     if (this.emptyStringValidation(username.value) && this.emptyStringValidation(email.value) && this.emptyStringValidation(password.value) && this.emptyStringValidation(cardNumber.value) && this.emptyStringValidation(cardDate.value) && this.emptyStringValidation(cvv2.value)) {
       console.log("Im here 2");
       if (this.containsWhitespace(username.value) && this.containsWhitespace(email.value) && this.containsWhitespace(password.value) && this.containsWhitespace(cardNumber.value) && this.containsWhitespace(cardDate.value) && this.containsWhitespace(cvv2.value)) {
@@ -60,9 +66,9 @@ export class LoginRegistrationPageComponent implements OnInit {
   containsWhitespace(txt: string): boolean {
     if (/\s/.test(txt)) {
       alert("Texts cant contain spaces!");
-      return false;
+      return true;
     }
-    return true;
+    return false;
   }
 
 
@@ -97,12 +103,15 @@ export class LoginRegistrationPageComponent implements OnInit {
   }
 
   loginValidation(email: HTMLInputElement, password: HTMLInputElement): boolean {
+    console.log("uso sam");
+    console.log(email);
     console.log(email.value);
     if (this.containsWhitespace(email.value) || this.containsWhitespace(password.value)) {
+      console.log("Greska sam");
       return false;
     }
-
-    return false;
+    console.log("Nisam greska");
+    return true;
   }
 
   signup(username: HTMLInputElement, email: HTMLInputElement, password: HTMLInputElement, cardNumber: HTMLInputElement, cardDate: HTMLInputElement, cvv2: HTMLInputElement) {
@@ -141,22 +150,26 @@ export class LoginRegistrationPageComponent implements OnInit {
   }
 
   login(email: HTMLInputElement, password: HTMLInputElement) {
-    this.http.get<any>("http://localhost:3000/users").subscribe(data => {
-      const user = data.find((pomUser: any) => {
-        console.log(pomUser.email);
-        console.log(email.value)
-        return pomUser.email === email.value && pomUser.password === password.value;
-      });
-      if (user) {
-        alert("Login success!");
-        this.router.navigate(['home']);
-      } else {
-        alert("Invalid email/password!");
-      }
-    }, err => {
-      alert("Something went wrong!");
-    });
+    if (this.loginValidation(email, password)) {
 
+      this.http.get<any>("http://localhost:3000/users").subscribe(data => {
+        const user = data.find((pomUser: any) => {
+          return pomUser.email === email.value && pomUser.password === password.value;
+        });
+        if (user) {
+          alert("Login success!");
+          localStorage.setItem('loggedInUser', JSON.stringify(user));
+          this.router.navigate(['home']);
+        } else {
+          alert("Invalid email/password!");
+        }
+      }, err => {
+        alert("Something went wrong!");
+      });
+
+    } else {
+      alert("Email and password mustn't be empty!");
+    }
   }
 
 }

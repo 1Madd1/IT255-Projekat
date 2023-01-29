@@ -10,7 +10,7 @@ export class UserService {
 
   getMaxId() {
     var maxId = 0;
-    this.http.get<any>("http://localhost:3000/users").subscribe(data => {
+    this.http.get<any>("../assets/users.json").subscribe(data => {
       const user = data.find((pomUser: any) => {
         if(pomUser.id > maxId){
           maxId = pomUser.id;
@@ -18,5 +18,9 @@ export class UserService {
       });
     });
     return maxId;
+  }
+
+  getAllUsers() {
+    return this.http.get('../assets/users.json');
   }
 }

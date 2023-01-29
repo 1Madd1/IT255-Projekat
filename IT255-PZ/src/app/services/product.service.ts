@@ -1,17 +1,20 @@
 import { Injectable } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
+import { Computer } from '../models/computer';
+import { ComponentItem } from '../models/component';
 
 @Injectable({
   providedIn: 'root'
 })
 export class ProductService {
 
-  products: any[] = [];
+
+  computers: Computer[] = [];
+  components: ComponentItem[] = [];
 
   constructor(private http: HttpClient) { }
 
   getAllComputers() {
-    console.log(this.http.get('../assets/computers.json'));
     return this.http.get('../assets/computers.json');
   }
 
@@ -19,33 +22,63 @@ export class ProductService {
     return this.http.get('../assets/components.json');
   }
 
-  getProduct() {
-    return this.products;
+  getComputers() {
+    return this.computers;
   }
 
-  saveCart() {
-    localStorage.setItem('cartItems', JSON.stringify(this.products));
+  getComponents() {
+    return this.components;
   }
 
-  addToCart(addedProduct: any) {
-    this.products.push(addedProduct);
-    this.saveCart();
+  saveComponentCart() {
+    localStorage.setItem('componentCartItems', JSON.stringify(this.components));
   }
 
-  loadCart() {
-    this.products = JSON.parse(localStorage.getItem('cartItems') as any) || [];
+  saveComputerCart() {
+    localStorage.setItem('computerCartItems', JSON.stringify(this.computers));
   }
 
-  productInCart(product: any) {
-    return this.products.findIndex((x: any) => x.id === product.id) > -1;
+  addComputersToCart(addedComputer: Computer) {
+    this.computers.push(addedComputer);
+    this.saveComputerCart();
   }
 
-  removeProduct(product: any) {
-    const index = this.products.findIndex((x: any) => x.id === product.id);
+  addComponentsToCart(addedComponent: ComponentItem) {
+    this.components.push(addedComponent);
+    this.saveComponentCart();
+  }
+
+  loadComputerCart() {
+    this.computers = JSON.parse(localStorage.getItem('computerCartItems') as any) || [];
+  }
+
+  loadComponentCart() {
+    this.components = JSON.parse(localStorage.getItem('componentCartItems') as any) || [];
+  }
+
+  computerInCart(computer: Computer) {
+    return this.computers.findIndex((x: any) => x.id === computer.id) > -1;
+  }
+
+  comonentInCart(component: ComponentItem) {
+    return this.components.findIndex((x: any) => x.id === component.id) > -1;
+  }
+
+  removeComputer(computer: Computer) {
+    const index = this.computers.findIndex((x: any) => x.id === computer.id);
 
     if(index > -1) {
-      this.products.splice(index, 1);
-      this.saveCart();
+      this.computers.splice(index, 1);
+      this.saveComputerCart();
+    }
+  }
+
+  removeComponent(component: ComponentItem) {
+    const index = this.components.findIndex((x: any) => x.id === component.id);
+
+    if(index > -1) {
+      this.components.splice(index, 1);
+      this.saveComponentCart();
     }
   }
 

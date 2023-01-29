@@ -1,5 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Computer } from '../models/computer';
+import { User } from '../models/user';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -8,17 +10,23 @@ import { ProductService } from '../services/product.service';
   styleUrls: ['./computers.component.css']
 })
 export class ComputersComponent implements OnInit {
-  productList: any[];
-  products: any[] = [];
+  computerList: Computer[];
+  computers: Computer[] = [];
   subTotal: any;
+  user: User;
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem('loggedInUser') as any) || [];
+    if(Object.keys(this.user).length == 0 || this.user == null){
+      this.router.navigate(['login-registraion-page']);
+    }
     localStorage.clear();
+    localStorage.setItem('loggedInUser', JSON.stringify(this.user));
     this.productService.getAllComputers().subscribe({
       next: (res: any) => {
         console.log(res);
-        this.productList = res;
+        this.computerList = res;
       },
       error: (error) => {
         alert(error);
@@ -27,40 +35,46 @@ export class ComputersComponent implements OnInit {
         console.log("Request Completed!");
       }
     });
-    this.productService.loadCart();
-    this.products = this.productService.getProduct();
+    this.productService.loadComputerCart();
+    this.computers = this.productService.getComputers();
   }
 
-  addToCart(product: any) {
-    if (!this.productService.productInCart(product)) {
-      this.productService.addToCart(product);
-      this.products = [...this.productService.getProduct()];
-      this.subTotal = product.price;
+
+  addComputerToCart(computer: Computer) {
+    if (!this.productService.computerInCart(computer)) {
+      this.productService.addComputersToCart(computer);
+      this.computers = [...this.productService.getComputers()];
+      this.subTotal = computer.price;
     }
   }
 
-  removeFromCart(product: any) {
-    this.productService.removeProduct(product);
-    this.products = this.productService.getProduct();
+  removeComputerFromCart(computer: Computer) {
+    this.productService.removeComputer(computer);
+    this.computers = this.productService.getComputers();
   }
 
   get total() {
-    return this.products?.reduce(
-      (sum, product) => ({
+    return this.computers?.reduce(
+      (sum, computer) => ({
         quantity: 1,
-        price: sum.price + product.quantity * product.price,
+        price: sum.price + computer.quantity * computer.price,
       }),
       { quantity: 1, price: 0 }
     ).price;
   }
 
   checkout() {
-    if (this.products.length > 0) {
+    if (this.computers.length > 0) {
       localStorage.setItem('cartTotal', JSON.stringify(this.total));
       this.router.navigate(['/payment-page']);
     } else {
       alert("Please select a product for checkout!");
     }
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login-registraion-page']);
   }
 
 }

@@ -1,26 +1,60 @@
+<app-navbar></app-navbar>
+<nav class="navbar navbar-light bg-light">
+    <div class="container-fluid">
+        <div class="d-flex navbar-brand">
+            <button (click)="logout()" class="btn btn-outline-success">Logout</button>
+        </div>
+    </div>
+</nav>
 <div class="container pb-5 mt-n2 mt-md-n3">
     <div class="row">
         <div class="col-xl-8 col-md-8">
 
-            <div *ngFor="let product of productList" class="d-sm-flex justify-content-between my-4 pb-4 border-bottom mt-4">
+            <div *ngFor="let computer of computerList" class="d-sm-flex justify-content-between my-4 pb-4 border-bottom mt-4">
 
                 <div class="media d-block d-sm-flex text-center text-sm-left info">
 
                     <div class="cart-item-thumb mx-auto mr-sm-4" href="">
-                        <img [src]="product.image" width="500" height="500" alt="Product" class="zoom" style="object-fit: contain">
+                        <img [src]="computer.image" width="500" height="500" alt="Product" class="zoom" style="object-fit: contain">
                     </div>
 
                     <div class="media-body pt-3 description">
 
                         <h3 class="product-card-title font-weight-semibold border-0 pb-0 mx-5">
-                            {{product.name}}
+                            {{computer.name}}
                         </h3>
 
                         <div class="font-size-sm">
-                            <span class="text-muted mr-2">Description:</span>{{product.description}}
+                            <span class="text-muted mr-2">Description:</span>{{computer.description}}
                         </div>
 
-                        <div class="font-size-lg text-primary pt-2">${{product.price}}</div>
+                        <div class="font-size-lg text-primary pt-2">${{computer.price}}</div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
+            <div *ngFor="let component of componentList" class="d-sm-flex justify-content-between my-4 pb-4 border-bottom mt-4">
+
+                <div class="media d-block d-sm-flex text-center text-sm-left info">
+
+                    <div class="cart-item-thumb mx-auto mr-sm-4" href="">
+                        <img [src]="component.image" width="500" height="500" alt="Product" class="zoom" style="object-fit: contain">
+                    </div>
+
+                    <div class="media-body pt-3 description">
+
+                        <h3 class="product-card-title font-weight-semibold border-0 pb-0 mx-5">
+                            {{component.name}}
+                        </h3>
+
+                        <div class="font-size-sm">
+                            <span class="text-muted mr-2">Description:</span>{{component.description}}
+                        </div>
+
+                        <div class="font-size-lg text-primary pt-2">${{component.price}}</div>
 
                     </div>
 

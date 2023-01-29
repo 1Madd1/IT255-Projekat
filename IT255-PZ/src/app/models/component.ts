@@ -1,4 +1,4 @@
-export class Component {
+export class ComponentItem {
     id: number;
     name: string;
     description: string;

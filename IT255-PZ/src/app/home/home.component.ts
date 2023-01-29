@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ComponentItem } from '../models/component';
+import { Computer } from '../models/computer';
+import { User } from '../models/user';
 import { ProductService } from '../services/product.service';
 
 @Component({
@@ -9,17 +12,24 @@ import { ProductService } from '../services/product.service';
 })
 export class HomeComponent implements OnInit {
 
-  productList: any[];
-  productList2: any[];
-  products: any[] = [];
+  computerList: Computer[];
+  componentList: ComponentItem[];
+  computers: Computer[] = [];
+  components: ComponentItem[] = [];
+  user: User;
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit(): void {
+    this.user = JSON.parse(localStorage.getItem('loggedInUser') as any) || [];
+    if(Object.keys(this.user).length == 0 || this.user == null){
+      this.router.navigate(['login-registraion-page']);
+    }
     localStorage.clear();
+    localStorage.setItem('loggedInUser', JSON.stringify(this.user));
     this.productService.getAllComputers().subscribe({
       next: (res: any) => {
         console.log(res);
-        this.productList = res;
+        this.computerList = res;
       },
       error: (error) => {
         alert(error);
@@ -31,7 +41,7 @@ export class HomeComponent implements OnInit {
     this.productService.getAllComponents().subscribe({
       next: (res: any) => {
         console.log(res);
-        this.productList2 = res;
+        this.componentList = res;
       },
       error: (error) => {
         alert(error);
@@ -40,7 +50,12 @@ export class HomeComponent implements OnInit {
         console.log("Request Completed!");
       }
     })
-    this.products = this.productService.getProduct();
+    this.computers = this.productService.getComputers();
+  }
+
+  logout() {
+    localStorage.clear();
+    this.router.navigate(['/login-registraion-page']);
   }
 
 }
