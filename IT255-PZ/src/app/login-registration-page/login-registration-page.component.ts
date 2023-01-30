@@ -21,11 +21,7 @@ export class LoginRegistrationPageComponent implements OnInit {
 
 
   ngOnInit(): void {
-    console.log(localStorage.getItem('loggedInUser'));
     this.user = JSON.parse(localStorage.getItem('loggedInUser') as any) || [];
-    console.log(this.user);
-    console.log(Object.keys(this.user).length);
-    console.log(Object.keys(this.user).length == 0);
     if(Object.keys(this.user).length != 0 && this.user != null){
       this.router.navigate(['home']);
     }
@@ -43,7 +39,6 @@ export class LoginRegistrationPageComponent implements OnInit {
   }
 
   emptyStringValidation(txt: string) {
-    console.log(txt);
     if (txt === null || txt === "" || txt.length === 0) {
       alert("Texts cant be empty!");
       return false;
@@ -52,16 +47,8 @@ export class LoginRegistrationPageComponent implements OnInit {
   }
 
   registrationValidation(username: HTMLInputElement, email: HTMLInputElement, password: HTMLInputElement, cardNumber: HTMLInputElement, cardDate: HTMLInputElement, cvv2: HTMLInputElement) {
-    console.log(username.value);
-    console.log(email.value);
-    console.log(password.value);
-    console.log(cardNumber.value);
-    console.log(cardDate.value);
-    console.log(cvv2.value);
     if (this.emptyStringValidation(username.value) && this.emptyStringValidation(email.value) && this.emptyStringValidation(password.value) && this.emptyStringValidation(cardNumber.value) && this.emptyStringValidation(cardDate.value) && this.emptyStringValidation(cvv2.value)) {
-      console.log("Im here 2");
       if (!this.containsWhitespace(username.value) && !this.containsWhitespace(email.value) && !this.containsWhitespace(password.value) && !this.containsWhitespace(cardNumber.value) && !this.containsWhitespace(cardDate.value) && !this.containsWhitespace(cvv2.value)) {
-        console.log("Im here 3");
           return this.creditCardValidation(cardNumber.value, cardDate.value, cvv2.value);
       }
     }
@@ -90,8 +77,6 @@ export class LoginRegistrationPageComponent implements OnInit {
       alert("Credit card number must have 16 numbers!");
       return false;
     }
-    console.log(cardNumber);
-    console.log(cardNumber.length);
     if (/[a-zA-Z]/.test(cardNumber) || /[a-zA-Z]/.test(cardDate) || /[a-zA-Z]/.test(cvv2)) {
       alert("Credit card number/date/cvv2 can't have letters!");
       return false;
@@ -108,14 +93,9 @@ export class LoginRegistrationPageComponent implements OnInit {
   }
 
   loginValidation(email: HTMLInputElement, password: HTMLInputElement): boolean {
-    console.log("uso sam");
-    console.log(email);
-    console.log(email.value);
     if (this.containsWhitespace(email.value) || this.containsWhitespace(password.value)) {
-      console.log("Greska sam");
       return false;
     }
-    console.log("Nisam greska");
     return true;
   }
 

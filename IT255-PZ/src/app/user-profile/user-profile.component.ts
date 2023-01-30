@@ -15,9 +15,6 @@ export class UserProfileComponent implements OnInit {
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('loggedInUser') as any) || [];
     this.creditCard = this.user.creditCard;
-    console.log(this.user);
-    console.log(this.user.creditCard);
-    console.log(this.creditCard);
     if(Object.keys(this.user).length == 0 || this.user == null){
       this.router.navigate(['login-registraion-page']);
     }
