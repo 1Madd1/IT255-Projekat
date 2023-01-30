@@ -14,6 +14,8 @@ import { LoginRegistrationPageComponent } from './login-registration-page/login-
 import { UserProfileComponent } from './user-profile/user-profile.component';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
+import { StoreModule } from '@ngrx/store';
+import { simpleReducer } from './ngrx/simple.reducer';
 
 const routes: Routes = [
   // osnovne rute
@@ -43,7 +45,8 @@ const routes: Routes = [
     HttpClientModule,
     RouterModule.forRoot(routes),
     FormsModule,
-    ReactiveFormsModule
+    ReactiveFormsModule,
+    StoreModule.forRoot({message: simpleReducer})
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'my-app',
   templateUrl: './app.component.html',
@@ -9,16 +10,10 @@ import { Router } from '@angular/router';
 export class AppComponent {
   title = 'Online PC Shop';
 
-  constructor(private router: Router) {}
+  constructor() {}
 
   ngOnInit(): void {
   }
-
-  logout() {
-    localStorage.clear();
-    this.router.navigate(['/login-registraion-page']);
-  }
-
 
 }
 

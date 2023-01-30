@@ -1,6 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { User } from '../models/user';
+import { Store } from '@ngrx/store';
+import { Observable } from 'rxjs';
+
+interface AppState {
+  message: string;
+}
 
 @Component({
   selector: 'app-about-us',
@@ -9,8 +15,11 @@ import { User } from '../models/user';
 })
 export class AboutUsComponent implements OnInit {
   user: User;
+  message$: Observable<string>;
 
-  constructor(private router: Router) { }
+  constructor(private router: Router, private store: Store<AppState>) {
+    this.message$ = this.store.select('message');
+  }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('loggedInUser') as any) || [];
@@ -24,6 +33,14 @@ export class AboutUsComponent implements OnInit {
   logout() {
     localStorage.clear();
     this.router.navigate(['/login-registraion-page']);
+  }
+
+  showHistoryInfo() {
+    this.store.dispatch({type: 'HISTORY'});
+  }
+
+  showSocialInfo() {
+    this.store.dispatch({type: 'SOCIAL'});
   }
 
 }
