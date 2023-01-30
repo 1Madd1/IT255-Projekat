@@ -66,6 +66,7 @@ export class ComputersComponent implements OnInit {
   checkout() {
     if (this.computers.length > 0) {
       localStorage.setItem('cartTotal', JSON.stringify(this.total));
+      localStorage.setItem('cartItems', JSON.stringify(this.productService.getComputers()));
       this.router.navigate(['/payment-page']);
     } else {
       alert("Please select a product for checkout!");

@@ -23,4 +23,5 @@ export class UserService {
   getAllUsers() {
     return this.http.get('../assets/users.json');
   }
+
 }

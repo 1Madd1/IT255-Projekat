@@ -1,28 +1,55 @@
 <div class="container">
-    <h1 class="h3 mb-5 mt-3">Payment Page</h1>
-    <div class="row">
-      <!-- Left -->
-      <div class="col-lg-9">
-        <div >
+  <h1 class="h3 mb-5 mt-3">Payment Page</h1>
+  <div class="row">
+    <!-- Left -->
+    <div class="col-lg-9">
+      <div class="money-info">
+        Money: {{user.creditCard.moneyAmount}}$
+      </div>
+      <hr />
+      <div *ngFor="let cartItem of cartItems" class="d-sm-flex justify-content-between my-4 pb-4 border-bottom mt-4">
+
+        <div class="media d-block d-sm-flex text-center text-sm-left info">
+
+          <div class="cart-item-thumb mx-auto mr-sm-4" href="">
+            <img [src]="cartItem.image" width="200" height="200" alt="Product" class="zoom" style="object-fit: contain">
+          </div>
+
+          <div class="media-body pt-3 description">
+
+            <h3 class="product-card-title font-weight-semibold border-0 pb-0 mx-5">
+              {{cartItem.name}}
+            </h3>
+
+            <h3 class="product-card-title font-weight-semibold border-0 pb-0 mx-5">
+              Quantity: {{cartItem.quantity}}
+            </h3>
+
+            <div class="font-size-lg text-primary pt-2">${{cartItem.price}}</div>
+
+
+          </div>
 
         </div>
-        <hr />
+
       </div>
-  
-      <!-- Right -->
-      <div class="col-lg-3">
-        <div class="card position-sticky top-0">
-          <div class="p-3 bg-light bg-opacity-10">
-            <h6 class="card-title mb-3">Order Summary</h6>
-            <div class="d-flex justify-content-between mb-1 small">
-              <span>Subtotal</span> <span>${{cartTotal}}</span>
-            </div>
-            <hr>
-            <div class="d-flex justify-content-between mb-4 small">
-              <span>TOTAL</span> <strong class="text-dark">${{cartTotal}}</strong>
-            </div>
+    </div>
+
+    <!-- Right -->
+    <div class="col-lg-3">
+      <div class="card position-sticky top-0">
+        <div class="p-3 bg-light bg-opacity-10">
+          <h6 class="card-title mb-3">Order Summary</h6>
+          <div class="d-flex justify-content-between mb-1 small">
+            <span>Subtotal</span> <span>${{cartTotal}}</span>
           </div>
+          <hr>
+          <div class="d-flex justify-content-between mb-4 small">
+            <span>TOTAL</span> <strong class="text-dark">${{cartTotal}}</strong>
+          </div>
+          <button (click)="pay()" class="btn btn-outline-success">Checkout</button>
         </div>
       </div>
     </div>
   </div>
+</div>

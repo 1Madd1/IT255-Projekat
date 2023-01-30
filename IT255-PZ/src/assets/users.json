@@ -23,6 +23,18 @@
         "cvv2": "236",
         "moneyAmount": 2000
       }
+    },
+    {
+      "id": 3,
+      "username": "djordje",
+      "email": "djoka05foka@gmail.com",
+      "password": "djordje",
+      "creditCard": {
+        "card-number": "1211-2111-1122-1121",
+        "card-date": "12/12",
+        "cvv2": "123",
+        "moneyAmount": 800.01
+      }
     }
   ]
 }

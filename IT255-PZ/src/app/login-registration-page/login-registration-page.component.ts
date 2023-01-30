@@ -43,6 +43,7 @@ export class LoginRegistrationPageComponent implements OnInit {
   }
 
   emptyStringValidation(txt: string) {
+    console.log(txt);
     if (txt === null || txt === "" || txt.length === 0) {
       alert("Texts cant be empty!");
       return false;
@@ -51,13 +52,17 @@ export class LoginRegistrationPageComponent implements OnInit {
   }
 
   registrationValidation(username: HTMLInputElement, email: HTMLInputElement, password: HTMLInputElement, cardNumber: HTMLInputElement, cardDate: HTMLInputElement, cvv2: HTMLInputElement) {
+    console.log(username.value);
+    console.log(email.value);
+    console.log(password.value);
+    console.log(cardNumber.value);
+    console.log(cardDate.value);
+    console.log(cvv2.value);
     if (this.emptyStringValidation(username.value) && this.emptyStringValidation(email.value) && this.emptyStringValidation(password.value) && this.emptyStringValidation(cardNumber.value) && this.emptyStringValidation(cardDate.value) && this.emptyStringValidation(cvv2.value)) {
       console.log("Im here 2");
-      if (this.containsWhitespace(username.value) && this.containsWhitespace(email.value) && this.containsWhitespace(password.value) && this.containsWhitespace(cardNumber.value) && this.containsWhitespace(cardDate.value) && this.containsWhitespace(cvv2.value)) {
+      if (!this.containsWhitespace(username.value) && !this.containsWhitespace(email.value) && !this.containsWhitespace(password.value) && !this.containsWhitespace(cardNumber.value) && !this.containsWhitespace(cardDate.value) && !this.containsWhitespace(cvv2.value)) {
         console.log("Im here 3");
-        if (!this.creditCardValidation(cardNumber.value, cardDate.value, cvv2.value)) {
-          return false;
-        }
+          return this.creditCardValidation(cardNumber.value, cardDate.value, cvv2.value);
       }
     }
     return false;
@@ -123,10 +128,10 @@ export class LoginRegistrationPageComponent implements OnInit {
         "email": email.value,
         "password": password.value,
         "creditCard": {
-          "card-number": cardNumber.value,
-          "card-date": cardDate.value,
+          "cardNumber": cardNumber.value,
+          "cardDate": cardDate.value,
           "cvv2": cvv2.value,
-          "money-amount": 2000
+          "moneyAmount": 2000
         }
       }
 
