@@ -3,6 +3,8 @@ export class User {
     username: string;
     password: string;
     email: string;
+    role: string;
+    enabled: boolean;
     creditCard: any;
     
     constructor(id: number, username: string, password: string, email: string, creditCard: any) {

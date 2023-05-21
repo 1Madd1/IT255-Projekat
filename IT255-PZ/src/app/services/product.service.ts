@@ -15,11 +15,11 @@ export class ProductService {
   constructor(private http: HttpClient) { }
 
   getAllComputers() {
-    return this.http.get('../assets/computers.json');
+    return this.http.get('https://localhost:8080/computer');
   }
 
   getAllComponents() {
-    return this.http.get('../assets/components.json');
+    return this.http.get('https://localhost:8080/component');
   }
 
   getComputers() {

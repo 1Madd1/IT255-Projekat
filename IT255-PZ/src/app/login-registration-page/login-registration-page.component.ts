@@ -57,7 +57,7 @@ export class LoginRegistrationPageComponent implements OnInit {
 
   containsWhitespace(txt: string): boolean {
     if (/\s/.test(txt)) {
-      alert("Texts cant contain spaces!");
+      alert("Texts can't contain spaces!");
       return true;
     }
     return false;
@@ -107,11 +107,13 @@ export class LoginRegistrationPageComponent implements OnInit {
         "username": username.value,
         "email": email.value,
         "password": password.value,
+        "role": 'ROLE_USER',
+        "enabled": true,
         "creditCard": {
-          "cardNumber": cardNumber.value,
-          "cardDate": cardDate.value,
+          "card_number": cardNumber.value,
+          "card_date": cardDate.value,
           "cvv2": cvv2.value,
-          "moneyAmount": 2000
+          "money": 20000
         }
       }
 
