@@ -28,6 +28,20 @@ const routes: Routes = [
   { path: 'payment-page', component: PaymentPageComponent },
   { path: 'about-us', component: AboutUsComponent }]
 
+  /**
+   * const routes: Routes = [
+  { path: 'product/:id', component: ProductComponent },
+ ]; za rutiranje po id, prvo se importuje
+ import { ActivatedRoute } from '@angular/router';
+ pa se inject-uje
+ export class ProductComponent {
+  id: string;
+ constructor(private route: ActivatedRoute) {
+  route.params.subscribe(params => { this.id = params['id']; });
+  }
+}
+   */
+
 @NgModule({
   declarations: [
     AppComponent,
