@@ -75,14 +75,6 @@ export class ComponentsComponent implements OnInit {
     ).price;
   }
 
-  checkList(){
-    for(var i = 0; i < this.componentList.length; i++){
-      if(this.componentList[i].quantity === 0){
-        this.componentList.splice(this.componentList.indexOf(this.componentList[i]), 1);
-      }
-    }
-  }
-
   checkout() {
     if (this.hasCreditCard) {
       if (this.components.length > 0) {

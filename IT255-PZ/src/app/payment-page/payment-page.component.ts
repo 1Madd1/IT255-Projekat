@@ -58,6 +58,7 @@ export class PaymentPageComponent implements OnInit {
           cvv2: this.user.creditCard.cvv2,
           money: this.user.creditCard.money
         })
+        this.updateProducts();
         
         this.router.navigate(['home']);
       } else {
@@ -74,7 +75,6 @@ export class PaymentPageComponent implements OnInit {
 
   updateProducts() {
     
-    
     if (this.cartComponents.length != 0) {
       
       for (let i = 0; i < this.cartComponents.length; i++) {
@@ -87,9 +87,13 @@ export class PaymentPageComponent implements OnInit {
     }
 
     if (this.cartComputers.length != 0) {
-      this.cartComputers.forEach(function (compu) {
-        console.log(compu);
-      });
+      for (let i = 0; i < this.cartComputers.length; i++) {
+        //this.productService.updateComponent(this.cartComponents[i]);
+        console.log(this.cartComputers[i]);
+        var pomComputer: Computer = new Computer(this.cartComputers[i].id, this.cartComputers[i].name, this.cartComputers[i].image, this.cartComputers[i].description, this.cartComputers[i].quantity - 1, this.cartComputers[i].price)
+        console.log(pomComputer);
+        this.productService.updateComputer(pomComputer);
+      }
     }
 
     this.router.navigate(['home']);
