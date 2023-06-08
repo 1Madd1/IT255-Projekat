@@ -12,13 +12,19 @@ import { ProductService } from '../services/product.service';
 export class ComputersComponent implements OnInit {
   computerList: Computer[];
   computers: Computer[] = [];
+  hasCreditCard: boolean;
   subTotal: any;
   user: User;
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('loggedInUser') as any) || [];
-    if(Object.keys(this.user).length == 0 || this.user == null){
+    if (this.user.creditCard == null) {
+      this.hasCreditCard = false;
+    } else {
+      this.hasCreditCard = true;
+    }
+    if (Object.keys(this.user).length == 0 || this.user == null) {
       this.router.navigate(['login-registraion-page']);
     }
     localStorage.clear();
@@ -41,10 +47,14 @@ export class ComputersComponent implements OnInit {
 
 
   addComputerToCart(computer: Computer) {
-    if (!this.productService.computerInCart(computer)) {
-      this.productService.addComputersToCart(computer);
-      this.computers = [...this.productService.getComputers()];
-      this.subTotal = computer.price;
+    if (this.hasCreditCard) {
+      if (!this.productService.computerInCart(computer)) {
+        this.productService.addComputersToCart(computer);
+        this.computers = [...this.productService.getComputers()];
+        this.subTotal = computer.price;
+      }
+    } else {
+      alert("Please add a credit card!");
     }
   }
 
@@ -57,19 +67,24 @@ export class ComputersComponent implements OnInit {
     return this.computers?.reduce(
       (sum, computer) => ({
         quantity: 1,
-        price: sum.price + computer.quantity * computer.price,
+        price: sum.price + computer.price,
       }),
       { quantity: 1, price: 0 }
     ).price;
   }
 
   checkout() {
-    if (this.computers.length > 0) {
-      localStorage.setItem('cartTotal', JSON.stringify(this.total));
-      localStorage.setItem('cartItems', JSON.stringify(this.productService.getComputers()));
-      this.router.navigate(['/payment-page']);
+    if (this.hasCreditCard) {
+      if (this.computers.length > 0) {
+        localStorage.setItem('cartTotal', JSON.stringify(this.total));
+        //localStorage.setItem('cartItems', JSON.stringify(this.productService.getComputers()));
+        localStorage.setItem('cartComputers', JSON.stringify(this.productService.getComputers()));
+        this.router.navigate(['/payment-page']);
+      } else {
+        alert("Please select a product for checkout!");
+      }
     } else {
-      alert("Please select a product for checkout!");
+      alert("Please add a credit card!");
     }
   }
 

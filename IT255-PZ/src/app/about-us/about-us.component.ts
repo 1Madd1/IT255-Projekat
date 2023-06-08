@@ -15,6 +15,7 @@ interface AppState {
 })
 export class AboutUsComponent implements OnInit {
   user: User;
+  hasCreditCard: boolean;
   message$: Observable<string>;
 
   constructor(private router: Router, private store: Store<AppState>) {
@@ -23,6 +24,11 @@ export class AboutUsComponent implements OnInit {
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('loggedInUser') as any) || [];
+    if(this.user.creditCard == null){
+      this.hasCreditCard = false;
+    } else {
+      this.hasCreditCard = true;
+    }
     if(Object.keys(this.user).length == 0 || this.user == null){
       this.router.navigate(['login-registraion-page']);
     }

@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Computer } from '../models/computer';
 import { ComponentItem } from '../models/component';
 
@@ -11,15 +11,43 @@ export class ProductService {
 
   computers: Computer[] = [];
   components: ComponentItem[] = [];
+  pomComputers: Computer[] = [];
+  pomComponents: ComponentItem[] = [];
 
-  constructor(private http: HttpClient) { }
+  constructor(private http: HttpClient) {
+    this.getAllComponents().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.pomComponents = res;
+      },
+      error: (error) => {
+        alert(error);
+      },
+      complete: () => {
+        console.log("Request Completed!");
+      }
+    })
+
+    this.getAllComputers().subscribe({
+      next: (res: any) => {
+        console.log(res);
+        this.pomComputers = res;
+      },
+      error: (error) => {
+        alert(error);
+      },
+      complete: () => {
+        console.log("Request Completed!");
+      }
+    })
+  }
 
   getAllComputers() {
-    return this.http.get('https://localhost:8080/computer');
+    return this.http.get('http://localhost:8080/computer/findAllNonEmpty');
   }
 
   getAllComponents() {
-    return this.http.get('https://localhost:8080/component');
+    return this.http.get('http://localhost:8080/component/findAllNonEmpty');
   }
 
   getComputers() {
@@ -28,6 +56,36 @@ export class ProductService {
 
   getComponents() {
     return this.components;
+  }
+
+  getActualAmountByComponentId(id: number): number{
+    for(var i = 0; i < this.pomComponents.length; i++){
+      if(this.pomComponents[i].id === id){
+        return this.pomComponents[i].quantity;
+      }
+    }
+    return -1;
+  }
+
+  getActualAmountByComputerId(id: number){
+    this.getAllComputers().subscribe({
+      next: (res: any) => {
+        this.pomComputers = res;
+      },
+      error: (error) => {
+        alert(error);
+      },
+      complete: () => {
+        console.log("Request Completed!");
+      }
+    })
+
+    for(var i = 0; i < this.pomComputers.length; i++){
+      if(this.pomComputers[i].id === id){
+        return this.pomComputers[i].quantity;
+      }
+    }
+    return -1;
   }
 
   saveComponentCart() {
@@ -84,6 +142,39 @@ export class ProductService {
 
   clearProducts() {
     localStorage.clear();
+  }
+
+  updateComputer(boughtComputer: Computer) {
+    this.http.put("http://localhost:8080/computer", JSON.stringify(boughtComputer), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json; charset=utf-8')
+    }).subscribe((data) => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+      alert("An error has occurred!")
+    })
+  }
+
+  updateComponent(boughtComponent: ComponentItem) {
+    
+    this.http.put("http://localhost:8080/component", JSON.stringify(boughtComponent), {
+      headers: new HttpHeaders()
+        .set('Content-Type', 'application/json; charset=utf-8')
+    }).subscribe((data) => {
+      console.log(data);
+    }, error => {
+      console.log(error);
+      alert("An error has occurred!")
+    })
+  }
+
+  addComputerToPurchaseHistory(boughtComputer: Computer) {
+
+  }
+
+  addComponentToPurchaseHistory(boughtComponent: ComponentItem) {
+    
   }
 
 }

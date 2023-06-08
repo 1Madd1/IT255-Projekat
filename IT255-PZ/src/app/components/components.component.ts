@@ -14,13 +14,19 @@ export class ComponentsComponent implements OnInit {
   componentList: ComponentItem[];
   components: ComponentItem[] = [];
   subTotal: any;
+  hasCreditCard: boolean;
   user: User;
 
   constructor(private productService: ProductService, private router: Router) { }
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem('loggedInUser') as any) || [];
-    if(Object.keys(this.user).length == 0 || this.user == null){
+    if (this.user.creditCard == null) {
+      this.hasCreditCard = false;
+    } else {
+      this.hasCreditCard = true;
+    }
+    if (Object.keys(this.user).length == 0 || this.user == null) {
       this.router.navigate(['login-registraion-page']);
     }
     localStorage.clear();
@@ -28,6 +34,7 @@ export class ComponentsComponent implements OnInit {
     this.productService.getAllComponents().subscribe({
       next: (res: any) => {
         console.log(res);
+        
         this.componentList = res;
       },
       error: (error) => {
@@ -42,10 +49,14 @@ export class ComponentsComponent implements OnInit {
   }
 
   addToCart(component: ComponentItem) {
-    if (!this.productService.comonentInCart(component)) {
-      this.productService.addComponentsToCart(component);
-      this.components = [...this.productService.getComponents()];
-      this.subTotal = component.price;
+    if (this.hasCreditCard) {
+      if (!this.productService.comonentInCart(component)) {
+        this.productService.addComponentsToCart(component);
+        this.components = [...this.productService.getComponents()];
+        this.subTotal = component.price;
+      }
+    } else {
+      alert("Please add a credit card!");
     }
   }
 
@@ -58,19 +69,32 @@ export class ComponentsComponent implements OnInit {
     return this.components?.reduce(
       (sum, product) => ({
         quantity: 1,
-        price: sum.price + product.quantity * product.price,
+        price: sum.price + product.price,
       }),
       { quantity: 1, price: 0 }
     ).price;
   }
 
+  checkList(){
+    for(var i = 0; i < this.componentList.length; i++){
+      if(this.componentList[i].quantity === 0){
+        this.componentList.splice(this.componentList.indexOf(this.componentList[i]), 1);
+      }
+    }
+  }
+
   checkout() {
-    if (this.components.length > 0) {
-      localStorage.setItem('cartTotal', JSON.stringify(this.total));
-      localStorage.setItem('cartItems', JSON.stringify(this.productService.getComponents()));
-      this.router.navigate(['/payment-page']);
+    if (this.hasCreditCard) {
+      if (this.components.length > 0) {
+        localStorage.setItem('cartTotal', JSON.stringify(this.total));
+        //localStorage.setItem('cartItems', JSON.stringify(this.productService.getComponents()));
+        localStorage.setItem('cartComponents', JSON.stringify(this.productService.getComponents()));
+        this.router.navigate(['/payment-page']);
+      } else {
+        alert("Please select a product for checkout!");
+      }
     } else {
-      alert("Please select a product for checkout!");
+      alert("Please add a credit card!");
     }
   }
 

@@ -4,6 +4,7 @@ import { ComponentItem } from '../models/component';
 import { Computer } from '../models/computer';
 import { User } from '../models/user';
 import { ProductService } from '../services/product.service';
+import { CreditCardService } from '../services/credit-card.service';
 
 @Component({
   selector: 'app-home',
@@ -16,11 +17,18 @@ export class HomeComponent implements OnInit {
   componentList: ComponentItem[];
   computers: Computer[] = [];
   components: ComponentItem[] = [];
+  hasCreditCard: boolean;
   user: User;
-  constructor(private productService: ProductService, private router: Router) { }
+  constructor(private productService: ProductService, private router: Router, private creditCardService: CreditCardService) { }
 
   ngOnInit(): void {
+    this.creditCardService.getCreditCard();
     this.user = JSON.parse(localStorage.getItem('loggedInUser') as any) || [];
+    if(this.user.creditCard == null){
+      this.hasCreditCard = false;
+    } else {
+      this.hasCreditCard = true;
+    }
     if(Object.keys(this.user).length == 0 || this.user == null){
       this.router.navigate(['login-registraion-page']);
     }

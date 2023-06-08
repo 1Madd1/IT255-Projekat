@@ -8,9 +8,9 @@
             <button (click)="checkout()" class="btn btn-outline-success">Checkout</button>
         </form>
     </div>
-    <div class="money-info">
+    <div class="money-info" >
         User: {{user.username}}
-        Money: {{user.creditCard.money}}$
+        <p *ngIf="hasCreditCard">Money: {{user.creditCard.money}}$</p>
     </div>
 </nav>
 
@@ -36,6 +36,7 @@
                             <span class="text-muted mr-2">Description:</span>{{component.description}}
                         </div>
 
+                        <div class="font-size-lg text-primary pt-2">Available: {{component.quantity}}</div>
                         <div class="font-size-lg text-primary pt-2">${{component.price}}</div>
 
                     </div>
@@ -74,12 +75,14 @@
                     {{component?.description}}
                 </p>
 
-                <div>
-                    <input [(ngModel)]="component.quantity" [ngModelOptions]="{standalone: true}" min="1" type="number"
-                        value="1" max="" class="form-control w-25" />
+                <!-- <div>
+                    <input [(ngModel)]="computer.quantity" [ngModelOptions]="{standalone: true}" min="1" type="number"
+                        value="1" max="100" class="form-control w-25" />
                     <br />
-                    <span>${{ component.quantity * component.price | number : '1.2-2'}}</span>
-                </div>
+                    <span>${{ computer.quantity * component.price | number : '1.2-2'}}</span>
+                </div> -->
+
+                <div>${{ component.price | number : '1.2-2'}}</div>
 
                 <button (click)="removeFromCart(component)" type="button" class="btn btn-danger mt-3">Remove from
                     cart</button>

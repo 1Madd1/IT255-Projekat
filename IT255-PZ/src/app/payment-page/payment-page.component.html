@@ -3,30 +3,60 @@
   <div class="row">
     <!-- Left -->
     <div class="col-lg-9">
-      <div class="money-info">
+      <div class="money-info" >
         User: {{user.username}}
-        Money: {{user.creditCard.money}}$
-      </div>
+        <p *ngIf="hasCreditCard">Money: {{user.creditCard.money}}$</p>
+    </div>
       <hr />
-      <div *ngFor="let cartItem of cartItems" class="d-sm-flex justify-content-between my-4 pb-4 border-bottom mt-4">
+      <h3>List of computers from cart</h3>
+      <div *ngFor="let computer of cartComputers" class="d-sm-flex justify-content-between my-4 pb-4 border-bottom mt-4">
 
         <div class="media d-block d-sm-flex text-center text-sm-left info">
 
           <div class="cart-item-thumb mx-auto mr-sm-4" href="">
-            <img [src]="cartItem.image" width="200" height="200" alt="Product" class="zoom" style="object-fit: contain">
+            <img [src]="computer.image" width="200" height="200" alt="Product" class="zoom" style="object-fit: contain">
           </div>
 
           <div class="media-body pt-3 description">
 
             <h3 class="product-card-title font-weight-semibold border-0 pb-0 mx-5">
-              {{cartItem.name}}
+              {{computer.name}}
             </h3>
 
             <h3 class="product-card-title font-weight-semibold border-0 pb-0 mx-5">
-              Quantity: {{cartItem.quantity}}
+              Quantity: {{computer.quantity}}
             </h3>
 
-            <div class="font-size-lg text-primary pt-2">${{cartItem.price}}</div>
+            <div class="font-size-lg text-primary pt-2">${{computer.price}}</div>
+
+
+          </div>
+
+        </div>
+
+      </div>
+      <hr />
+      <h3>List of components from cart</h3>
+      <div *ngFor="let component of cartComponents" class="d-sm-flex justify-content-between my-4 pb-4 border-bottom mt-4">
+        
+
+        <div class="media d-block d-sm-flex text-center text-sm-left info">
+
+          <div class="cart-item-thumb mx-auto mr-sm-4" href="">
+            <img [src]="component.image" width="200" height="200" alt="Product" class="zoom" style="object-fit: contain">
+          </div>
+
+          <div class="media-body pt-3 description">
+
+            <h3 class="product-card-title font-weight-semibold border-0 pb-0 mx-5">
+              {{component.name}}
+            </h3>
+
+            <h3 class="product-card-title font-weight-semibold border-0 pb-0 mx-5">
+              Manufacturer: {{component.manufacturer}}
+            </h3>
+
+            <div class="font-size-lg text-primary pt-2">${{component.price}}</div>
 
 
           </div>
@@ -49,6 +79,7 @@
             <span>TOTAL</span> <strong class="text-dark">${{cartTotal}}</strong>
           </div>
           <button (click)="pay()" class="btn btn-outline-success">Checkout</button>
+          <button (click)="updateProducts()" class="btn btn-outline-success">Update</button>
         </div>
       </div>
     </div>

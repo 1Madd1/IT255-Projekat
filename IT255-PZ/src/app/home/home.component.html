@@ -5,9 +5,9 @@
             <button (click)="logout()" class="btn btn-outline-success">Logout</button>
         </div>
     </div>
-    <div class="money-info">
+    <div class="money-info" >
         User: {{user.username}}
-        Money: {{user.creditCard.money}}$
+        <p *ngIf="hasCreditCard">Money: {{user.creditCard.money}}$</p>
     </div>
 </nav>
 <div class="container pb-5 mt-n2 mt-md-n3">
