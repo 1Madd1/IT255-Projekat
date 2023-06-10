@@ -8,7 +8,6 @@ import { ComponentItem } from '../models/component';
 })
 export class ProductService {
 
-
   computers: Computer[] = [];
   components: ComponentItem[] = [];
   pomComputers: Computer[] = [];

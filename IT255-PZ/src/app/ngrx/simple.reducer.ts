@@ -6,7 +6,7 @@ export function simpleReducer(state: string = "", action: Action) {
     switch (action.type) {
         case 'HISTORY':
             state = "Our shop has a short history of selling quality products. From simple household stuff to new technological components.\n"  
-            + " We have sold our products to all countries all over the world. From Canada to Mexico, from Brazil to Argentina, From U.K. to Grece, etc.";
+            + " We have sold our products to all countries all over the world. From Canada to Mexico, from Brazil to Argentina, From U.K. to Greece, etc.";
             return state;
 
         case 'SOCIAL':

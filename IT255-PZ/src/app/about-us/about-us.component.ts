@@ -28,6 +28,7 @@ export class AboutUsComponent implements OnInit {
       this.hasCreditCard = false;
     } else {
       this.hasCreditCard = true;
+      this.user.creditCard.money = Math.round(this.user.creditCard.money * 100) / 100;
     }
     if(Object.keys(this.user).length == 0 || this.user == null){
       this.router.navigate(['login-registraion-page']);

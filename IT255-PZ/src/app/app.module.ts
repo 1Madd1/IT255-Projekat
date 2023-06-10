@@ -16,12 +16,14 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { FormGroup } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { simpleReducer } from './ngrx/simple.reducer';
+import { PurchaseHistoryComponent } from './purchase-history/purchase-history.component';
 
 const routes: Routes = [
   // osnovne rute
   { path: '', redirectTo: '/login-registraion-page', pathMatch: 'full' },
   { path: 'login-registraion-page', component: LoginRegistrationPageComponent },
   { path: 'home', component: HomeComponent },
+  { path: 'purchase-history', component: PurchaseHistoryComponent },
   { path: 'user-profile', component: UserProfileComponent },
   { path: 'computers', component: ComputersComponent },
   { path: 'components', component: ComponentsComponent },
@@ -51,7 +53,8 @@ const routes: Routes = [
     AboutUsComponent,
     HomeComponent,
     PaymentPageComponent,
-    UserProfileComponent
+    UserProfileComponent,
+    PurchaseHistoryComponent
   ],
   imports: [
     BrowserModule,

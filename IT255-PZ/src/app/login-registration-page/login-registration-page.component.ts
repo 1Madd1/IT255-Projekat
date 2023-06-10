@@ -43,16 +43,11 @@ export class LoginRegistrationPageComponent implements OnInit {
       alert("Texts cant be empty!");
       return false;
     }
-    return true;
+    return !this.containsWhitespace(txt);
   }
 
   registrationValidation(username: HTMLInputElement, email: HTMLInputElement, password: HTMLInputElement) {
-    if (this.emptyStringValidation(username.value) && this.emptyStringValidation(email.value) && this.emptyStringValidation(password.value)) {
-      if (!this.containsWhitespace(username.value) && !this.containsWhitespace(email.value) && !this.containsWhitespace(password.value)) {
-        return true;
-      }
-    }
-    return false;
+    return this.emptyStringValidation(username.value) && this.emptyStringValidation(email.value) && this.emptyStringValidation(password.value);
   }
 
   // registrationValidation(username: HTMLInputElement, email: HTMLInputElement, password: HTMLInputElement, cardNumber: HTMLInputElement, cardDate: HTMLInputElement, cvv2: HTMLInputElement) {
@@ -80,10 +75,7 @@ export class LoginRegistrationPageComponent implements OnInit {
   }
 
   loginValidation(email: HTMLInputElement, password: HTMLInputElement): boolean {
-    if (this.containsWhitespace(email.value) || this.containsWhitespace(password.value)) {
-      return false;
-    }
-    return true;
+    return this.emptyStringValidation(email.value) && this.emptyStringValidation(password.value);
   }
 
   signup(username: HTMLInputElement, email: HTMLInputElement, password: HTMLInputElement) {
@@ -174,8 +166,6 @@ export class LoginRegistrationPageComponent implements OnInit {
       //   }
       // });
 
-    } else {
-      alert("Email and password mustn't be empty!");
     }
   }
 

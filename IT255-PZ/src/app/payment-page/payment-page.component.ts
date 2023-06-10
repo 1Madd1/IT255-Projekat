@@ -6,6 +6,7 @@ import { Computer } from '../models/computer';
 import { ComponentItem } from '../models/component';
 import { CreditCardService } from '../services/credit-card.service';
 import { ProductService } from '../services/product.service';
+import { PurchaseHistoryService } from '../services/purchase-history.service';
 
 @Component({
   selector: 'app-payment-page',
@@ -20,7 +21,7 @@ export class PaymentPageComponent implements OnInit {
   hasCreditCard: boolean;
   user: User;
 
-  constructor(private router: Router, private http: HttpClient, private creditCardService: CreditCardService, private productService: ProductService) { }
+  constructor(private router: Router, private creditCardService: CreditCardService, private productService: ProductService, private purchaseHistoryService: PurchaseHistoryService) { }
 
   ngOnInit(): void {
     this.user = JSON.parse(localStorage.getItem('loggedInUser') as any) || [];
@@ -28,6 +29,7 @@ export class PaymentPageComponent implements OnInit {
       this.hasCreditCard = false;
     } else {
       this.hasCreditCard = true;
+      this.user.creditCard.money = Math.round(this.user.creditCard.money * 100) / 100;
     }
     if (Object.keys(this.user).length == 0 || this.user == null) {
       localStorage.clear();
@@ -69,9 +71,13 @@ export class PaymentPageComponent implements OnInit {
     }
   }
 
-  addToPurchaseHistory() {
+  // addComponentToPurchaseHistory(computer: Computer) {
+  //   this.purchaseHistoryService.addComputerToHistory(computer);
+  // }
 
-  }
+  // addComputerToPurchaseHistory(component: ComponentItem) {
+  //   this.purchaseHistoryService.addComponentToHistory(component);
+  // }
 
   updateProducts() {
     
@@ -83,6 +89,7 @@ export class PaymentPageComponent implements OnInit {
         var pomComponent: ComponentItem = new ComponentItem(this.cartComponents[i].id, this.cartComponents[i].name, this.cartComponents[i].image, this.cartComponents[i].description, this.cartComponents[i].manufacturer, this.cartComponents[i].quantity - 1, this.cartComponents[i].price);
         console.log(pomComponent);
         this.productService.updateComponent(pomComponent);
+        this.purchaseHistoryService.addComponentToHistory(pomComponent, this.user.id);
       }
     }
 
@@ -93,6 +100,7 @@ export class PaymentPageComponent implements OnInit {
         var pomComputer: Computer = new Computer(this.cartComputers[i].id, this.cartComputers[i].name, this.cartComputers[i].image, this.cartComputers[i].description, this.cartComputers[i].quantity - 1, this.cartComputers[i].price)
         console.log(pomComputer);
         this.productService.updateComputer(pomComputer);
+        this.purchaseHistoryService.addComputerToHistory(pomComputer, this.user.id);
       }
     }
 

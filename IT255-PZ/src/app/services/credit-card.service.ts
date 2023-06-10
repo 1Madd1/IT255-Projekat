@@ -16,15 +16,14 @@ export class CreditCardService {
   getCreditCard(){
     // return this.http.get('http://localhost:8080/creditCard/userId');
     this.user = JSON.parse(localStorage.getItem('loggedInUser') as any) || [];
-    this.http.get("http://localhost:8080/creditCard?userId=" + this.user.id).subscribe((data: any) => {
-      this.loadedCreditCard = data;
-      console.log(this.loadedCreditCard);
-      this.user.creditCard = this.loadedCreditCard[0];
+    console.log(this.user.id);
+    this.http.get("http://localhost:8080/creditCard/userId?userId=" + this.user.id).subscribe((data: any) => {
+      this.user.creditCard = data;
       console.log(this.user.creditCard);
       localStorage.setItem("loggedInUser", JSON.stringify(this.user));
     }, error => {
       console.log(error);
-      alert("An error loading user credit card has occurred!")
+      alert("You don't have credit card added!");
     })
   }
 
