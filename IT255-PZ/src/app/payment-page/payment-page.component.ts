@@ -61,6 +61,7 @@ export class PaymentPageComponent implements OnInit {
           money: this.user.creditCard.money
         })
         this.updateProducts();
+        alert("Payment successful!")
         
         this.router.navigate(['home']);
       } else {
